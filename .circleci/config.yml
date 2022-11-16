@@ -14,7 +14,7 @@ jobs: # a collection of steps
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Check npm and node version
-          command: |
+          command: npm audit [fix|signatures]
             node --version
             npm --version
       - run:
@@ -37,7 +37,7 @@ jobs: # a collection of steps
 
       - run:
           name: Build test container
-          command: |
+          command: npm audit 
             docker build -t "ucp:${CIRCLE_BUILD_NUM}" .
 
 workflows:
